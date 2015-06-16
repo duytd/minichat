@@ -1,0 +1,10 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<h1>My name is : <%= @user.name %> </h1>
+<h1>My hobbies are:</h1>
+<ul>
+  <% @user.hobbies.each do |item| %>
+    <li><%= item.name %></li>
+  <% end %>
+</ul>

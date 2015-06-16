@@ -1,0 +1,25 @@
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+  database: twinkling
+  options:
+    w: 1
+    pool_size: 1
+    slave_ok: false
+    ssl: false
+
+development:
+  <<: *defaults
+  database: twinkling
+
+test:
+  <<: *defaults
+  database: twinkling
+  w: 0
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  database: twinkling
+  username: <%= ENV['MONGO_USERNAME'] %>
+  password: <%= ENV['MONGO_PASSWORD'] %>

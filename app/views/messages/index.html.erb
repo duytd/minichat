@@ -1,0 +1,71 @@
+<h1>Chat box</h1>
+
+<div class="small-3 columns">
+  Friends
+  <div class="panel">
+  </div>
+</div>
+
+<div class="small-9 columns">
+  <div class="panel">
+    <div id="messages">
+      <% @messages.each do |message| %>
+      <%if message.user == current_user%>
+      <div class="row">
+        <div class="panel callout small-5 left">Me: <%= message.content %></div>
+      </div>
+      <%else%>
+      <div class="row">
+        <div class="panel callout radius small-5 right"><%= message.user.email %>: <%= message.content %></div>
+      </div>
+      <%end%>
+    <% end %>
+    </div>
+
+    <%= form_for :message, :html=>{:id=>'chat-form'} do |f| %>
+      <div class="row">
+        <%= f.text_field :content %>
+        <input type="submit" class="button right" id="send" value="Send">
+      </div>
+    <%end%>
+  
+  </div>
+</div>
+
+<% content_for :custom_javascript do %>
+<script type="text/javascript">
+
+  var socket = io('<%=@sockjs_server%>');
+  <%if user_signed_in?%>
+  var user = '<%=current_user.email%>';
+  <%end%>
+  scrollToBottom();
+
+  socket.on('new-message', function(message){
+    var newMsg = null;
+    if (user == message.user) {
+      newMsg = $('<div class="row"><div class="panel callout small-5 left">Me: '+message.content+'</div></div>');
+    }
+    else {
+      newMsg = $('<div class="row"><div class="panel callout small-5 right">'+message.user+': '+message.content+'</div></div>');
+    }
+
+    $("#messages").append(newMsg);
+    scrollToBottom();
+  });
+
+  $('#chat-form').on("submit", function(e){
+    e.preventDefault();
+    var url = $(this).attr("action");
+    var data = $(this).serialize();
+    $.post(url, data);
+  });
+
+  function scrollToBottom() {
+    var panel = $("#messages");
+    var height = panel[0].scrollHeight;
+    $("#messages").scrollTop(height);
+  }
+
+</script>
+<% end %>

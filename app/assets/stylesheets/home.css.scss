@@ -1,0 +1,16 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#content {
+	margin-top: 10px;
+}
+.top-bar {
+	background: #222;
+}
+#messages {
+	height: 350px;
+	padding: 0 20px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
