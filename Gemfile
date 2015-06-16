@@ -35,6 +35,8 @@ gem 'socket.io-rails'
 
 gem 'redis-rails'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   gem 'sqlite3'
 end
