@@ -82,6 +82,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.1.6)
   redis-rails
   sass-rails (~> 5.0.0)
