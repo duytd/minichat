@@ -1,2 +1,3 @@
 # minichat
-A realtime chat application 
+=======
+A realtime Ruby On Rails chat application
